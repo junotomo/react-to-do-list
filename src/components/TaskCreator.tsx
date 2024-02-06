@@ -26,7 +26,7 @@ export const TaskCreator = ({onCreateTask}: TaskProps) => {
    const isnNewTaskEmpty = newTask.length === 0
 
    return (
-        <div >
+        <div className={styles.taskCreatorContainer}>
          <form className={styles.taskCreator} onSubmit={handelCreateTask} >
             <textarea
                   name='taskInput'

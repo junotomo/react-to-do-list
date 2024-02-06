@@ -1,7 +1,7 @@
 import { Check, Trash } from "phosphor-react"
 import styles from "./Task.module.css"
 import { Task } from "../App"
-
+import { ChangeEvent } from 'react'
 
 interface TaskProps {
     taskValue: Task,
@@ -14,30 +14,29 @@ export const TaskContainer = ({taskValue,onTaskToggleStatus, onDeleteTask}: Task
     const handleDeleteTask = () => {
         onDeleteTask(taskValue.id)
     }
-    const handleTaskToggle = () => {
-
+    
+    const handleTaskToggle = (event: ChangeEvent<HTMLLabelElement>)=> {
+        event.preventDefault()
         onTaskToggleStatus({id: taskValue.id, isChecked: !taskValue.isChecked})
-
     }
 
-
-
-  const checkedStyle = taskValue.isChecked? styles['checked-paragpraph']: ''
+    const checkboxStyle = taskValue.isChecked ? styles['checkbox-checked']: styles['checkbox-unchecked']
+    const checkedStyle = taskValue.isChecked ? styles['checkedText']: ''
 
     return (
-        <article className={styles.articleList}>
-            <div className={styles.task}>
-                <label className={styles.taskCheck} onClick={handleTaskToggle}>
-                    <input type="checkbox" />
-                    <span><Check/></span>
-                </label>
-                <p className={`${checkedStyle}`}>
-                    {taskValue.text}
-                </p>
-                <button onClick={handleDeleteTask}>
-                    <Trash  size={14}/>
-                </button>
-            </div>
-        </article>
+        <div className={styles.task}>
+            <label className={`${styles.taskCheck} ${checkboxStyle}`} onClick={ event =>handleTaskToggle(event)}>
+                <input type="checkbox" />
+                <span>
+                    {taskValue.isChecked && <Check size={12} />}
+                </span>
+            </label>
+            <p className={`${styles.taskText} ${checkedStyle}`}>
+                {taskValue.text}
+            </p>
+            <button onClick={handleDeleteTask}>
+                <Trash  size={14}/>
+            </button>
+        </div>
     )
 }

@@ -1,7 +1,7 @@
 :root {
     --blue-dark: #1e6f9f;
     --blue: #4EA8DE;
-    --purble: #8284FA;
+    --purple: #8284FA;
     --purple-dark: #5E60CE;
     --gray-700: #0d0d0d;
     --gray-600: #1A1A1A;
@@ -15,7 +15,6 @@
 
 :focus {
     outline: transparent;
-    box-shadow: 0 0 0 2px var(--green-500);
 }
 
 
@@ -26,7 +25,7 @@
 }
 
 body {
-    background: var(--gray-400);
+    background: var(--gray-600);
     color: var(--gray-300);
     -webkit-font-smoothing: antialiased;
 }

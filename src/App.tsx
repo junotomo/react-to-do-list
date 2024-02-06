@@ -3,6 +3,7 @@ import { Header } from "./components/Header.tsx"
 import { TaskContainer } from "./components/Task.tsx";
 import './global.css'
 import { useState } from 'react';
+import styles from "./App.module.css";
 
 export interface Task {
   id: number
@@ -19,7 +20,6 @@ export const App = () => {
       text: newTaskText,
       isChecked: false
     }    
-
     setTaskList([...taskList, task])
   }
 
@@ -40,6 +40,12 @@ export const App = () => {
     setTaskList(updatedTasks)
   }
 
+  const taskDone = taskList.reduce((prev, current) => {
+    if (current.isChecked) {
+      return prev + 1
+    }
+    return prev
+  }, 0)
 
   return (
     <div >
@@ -47,7 +53,17 @@ export const App = () => {
         <TaskCreator
           onCreateTask={createTask}
          />
-      <main>    
+      <main className={styles.container}>    
+          <div className={styles.taskCounterConteiner}>
+              <div className={styles.taskCounter}>
+                  <p>Tarefas criadas </p>
+                  <div>{taskList.length}</div>
+              </div>
+              <div className={styles.taskCounter}>
+                <p>Concluídas</p>
+                <div>{taskDone} de {taskList.length}</div>
+              </div>
+          </div>
         {taskList.map(taskContent => {
             return (
               <TaskContainer
@@ -60,7 +76,6 @@ export const App = () => {
         })}       
       </main>
     </div>
-
     )
 }
 

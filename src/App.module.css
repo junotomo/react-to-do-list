@@ -1,6 +1,29 @@
-header {
-    height: 200px;
+.container {
+    max-width: 46rem;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.taskCounterConteiner{
     display: flex;
-    align-items: center;
-    background: var(--gray-700);
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+    margin-top: 4rem;
+}
+.taskCounter {
+    display: flex;
+    justify-content: space-between;
+    gap: 0.5rem;
+}
+.taskCounter > p {
+    font-weight: bold;
+    color: var(--blue);
+    font-size:  0.875rem;
+}
+.taskCounter > div {
+    background: var(--gray-400);
+    color: var(--gray-200);
+    border-radius: 1rem;
+    font-size: 0.75rem;
+    padding: 2px 8px;
 }
